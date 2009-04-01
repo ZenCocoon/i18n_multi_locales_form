@@ -22,7 +22,7 @@ module ActionView
         options["type"] = field_type
         options["value"] ||= (options["locale"] ?
           object.send(sanitized_method_name, options['locale']) :
-          value_before_type_cast(object, options["locale"])) unless field_type == "file"
+          value_before_type_cast(object)) unless field_type == "file"
         options["value"] &&= html_escape(options["value"])
         add_default_name_and_id(options)
         tag("input", options)
