@@ -28,6 +28,20 @@ module ActionView
         tag("input", options)
       end
       
+      def to_text_area_tag(options = {})
+        options = DEFAULT_TEXT_AREA_OPTIONS.merge(options.stringify_keys)
+        value = options.delete('value') || (options["locale"] ?
+          object.send(sanitized_method_name, options['locale']) :
+          value_before_type_cast(object))
+        add_default_name_and_id(options)
+
+        if size = options.delete("size")
+          options["cols"], options["rows"] = size.split("x") if size.respond_to?(:split)
+        end
+
+        content_tag("textarea", html_escape(value), options)
+      end
+      
       private
         def add_default_name_and_id(options)
           if options.has_key?("index")
