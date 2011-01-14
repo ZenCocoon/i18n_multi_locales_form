@@ -12,7 +12,7 @@ It requires :
 
 * Rails 2.3.*
 * Globalize2 v0.1.1 with this patches on top
-** [6-add-locale-parameter-to-setters][patch]
+* [6-add-locale-parameter-to-setters][patch]
 
 ## WARNING
 
