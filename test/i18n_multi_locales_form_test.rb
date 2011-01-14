@@ -24,6 +24,7 @@ class I18nMultiLocalesForm < ActionView::TestCase
   
   def test_multi_locales
     multi_locales(I18n.available_locales) do |locale|
+      concat label :post, 'title', nil, {:locale => locale}
       concat text_field :post, 'title', {:locale => locale}
       concat text_area :post, 'body', {:locale => locale}
     end
@@ -34,10 +35,12 @@ class I18nMultiLocalesForm < ActionView::TestCase
                '</ul>' +
                '<div class="multi_locales">' +
                '<div class="locale en">' +
+               '<label for="post_title_en">Title</label>' +
                '<input id="post_title_en" lang="en" name="post[title][en]" size="30" type="text" value="" />' +
                '<textarea name="post[body][en]" id="post_body_en" rows="20" lang="en" cols="40"></textarea>' +
                '</div>' +
                '<div class="locale fr">' +
+               '<label for="post_title_fr">Title</label>' +
                '<input id="post_title_fr" lang="fr" name="post[title][fr]" size="30" type="text" value="" />' +
                '<textarea name="post[body][fr]" id="post_body_fr" rows="20" lang="fr" cols="40"></textarea>' +
                '</div>' +
