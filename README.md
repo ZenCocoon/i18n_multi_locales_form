@@ -29,6 +29,31 @@ Just add the option :locale => YOUR_LOCALE to your text_field.
     # Generated
     <input type="text" lang="fr" value="VALUE_TRANSLATED" size="30" name="page[title][en]" id="page_title_en"/>
 
+
+You can also use the view helper multi_locales to generate your fields
+
+    # in views
+    <% multi_locales(I18n.available_locales) do |locale| %>
+      <%= f.text_field :title, {:locale => locale} %>
+      <%= f.text_area :body, {:locale => locale} %>
+    <% end %>
+
+    # Generated
+    <ul class="nav locales">
+      <li class="en"><a href="#"><span class="name">English</span></a></li>
+      <li class="fr"><a href="#"><span class="name">Français</span></a></li>
+    </ul>
+    <div class="multi_locales">
+      <div class="locale en">
+        <input id="post_title_en" lang="en" name="post[title][en]" size="30" type="text" value="Title" />
+        <textarea name="post[body][en]" id="post_body_en" rows="20" lang="en" cols="40"></textarea>
+      </div>
+      <div class="locale fr">
+        <input id="post_title_fr" lang="fr" name="post[title][fr]" size="30" type="text" value="Title" />
+        <textarea name="post[body][fr]" id="post_body_fr" rows="20" lang="fr" cols="40"></textarea>
+      </div>
+    </div>
+
 ## License
 
 This code is free to be used under the terms of the [MIT license][mit].
